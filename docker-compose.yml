@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  api:
+    build: .
+    ports:
+      - 80:3000
+    environment:
+      DB_URL: mongodb://db/todo-task
+    restart: unless-stopped
+  db:
+    image: mongo:4.0-xenial
+    ports:
+      - 27017:27017
+    volumes:
+      - todo-task:/data/db
+volumes:
+  todo-task:
